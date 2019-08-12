@@ -2,8 +2,8 @@ object CalculadoraIMC: TCalculadoraIMC
   Left = 0
   Top = 0
   Caption = 'CalculadoraIMC'
-  ClientHeight = 381
-  ClientWidth = 398
+  ClientHeight = 369
+  ClientWidth = 382
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,7 +14,7 @@ object CalculadoraIMC: TCalculadoraIMC
   PixelsPerInch = 96
   TextHeight = 13
   object GroupBox1: TGroupBox
-    Left = 8
+    Left = 0
     Top = 0
     Width = 377
     Height = 186
@@ -75,7 +75,7 @@ object CalculadoraIMC: TCalculadoraIMC
     end
   end
   object GroupBox2: TGroupBox
-    Left = 8
+    Left = -3
     Top = 192
     Width = 380
     Height = 184

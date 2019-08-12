@@ -39,14 +39,14 @@ implementation
 function CalculaIMC(altura, peso: Double) : Double;
    var imc : Double;
       begin
-             try
-                altura := altura/100;
-                imc := (peso /(altura*altura));
-             except
-                 Showmessage('Impossivel dividir por zero!');
-             end;
+           try
+              altura := altura/100;
+              imc := (peso /(altura*altura));
+           except
+               Showmessage('Impossivel dividir por zero!');
+           end;
              
-            result := imc;
+          result := imc;
        
       end;
 

@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
 
 type
-  TForm1 = class(TForm)
+    TCalculadoraIMC = class(TForm)
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
     Edit1: TEdit;
@@ -27,7 +27,7 @@ type
   end;
 
 var
-  Form1: TForm1;
+  CalculadoraIMC: TCalculadoraIMC;
 
 implementation
 
@@ -39,14 +39,15 @@ implementation
 function CalculaIMC(altura, peso: Double) : Double;
    var imc : Double;
       begin
-     
-        try
-           altura := altura/100;
-           imc := (peso /(altura*altura));
-           result := imc;
-        except
-        end;
-          
+             try
+                altura := altura/100;
+                imc := (peso /(altura*altura));
+             except
+                 Showmessage('Impossivel dividir por zero!');
+             end;
+             
+            result := imc;
+       
       end;
 
 function MostraFaixa( imc : Double ) : String ;
@@ -54,41 +55,38 @@ function MostraFaixa( imc : Double ) : String ;
       begin
           if (imc < 18.5)
               then faixaIMC := 'Abaixo do Peso'
+              
           else if ((imc >= 18.5) and (imc < 25.0))
               then faixaIMC := 'Peso Ideal'
+              
           else if ((imc >= 25.0) and (imc < 30.0))
               then faixaIMC := 'Pouco acima do peso'
+              
           // Valores de IMC maior ou igual a 30,0
           else faixaIMC := 'Muito acima do peso';
+          
           result := faixaIMC;
 
       end;
 
-
-procedure TForm1.Button1Click(Sender: TObject);
-var altura, i : integer ;
+procedure TCalculadoraIMC.Button1Click(Sender: TObject);
+var altura : integer ;
     imc, peso   : double;
     faixa: String;
 
     begin
-      try
-          altura := StrToInt(Edit1.Text);
-          peso   := StrToFloat(Edit2.Text); 
-      except
-            Showmessage('Preencha todos os campos');
+        try
+            altura := StrToInt(Edit1.Text);
+            peso   := StrToFloat(Edit2.Text); 
+            imc   := CalculaIMC(altura, peso);
+            faixa := MostraFaixa(imc);
 
-
-      end;
-           try
-              imc   := CalculaIMC(altura, peso);
- 
-              faixa := MostraFaixa(imc);
-           finally
-                  Edit3.Text := FloatToStr(imc);
-          Edit4.Text := faixa;
-           end;
-      
-      
+            Edit3.Text := FloatToStr(imc);
+            Edit4.Text := faixa;
+        except
+             Showmessage('Preencha todos os campos');
+        end;
+   
 
     end;
 
